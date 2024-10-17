@@ -43,7 +43,7 @@ const TeachersDetail = () => {
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white  py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-7">
-      <h1 className="text-xl font-bold text-black mb-4 px-7.5 dark:text-white">Teacher Details</h1>
+      <h1 className="text-xl font-bold text-black mb-4 px-7.5 dark:text-white">Teachers Detail</h1>
       <div className="overflow-x-auto">
         <table className="w-full text-left dark:text-white">
           <thead>
