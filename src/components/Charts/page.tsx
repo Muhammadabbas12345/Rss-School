@@ -5,7 +5,7 @@ import ChartTwo from "@/components/Charts/ChartTwo";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const ChartThree = dynamic(() => import("@/components/Charts/Calender"), {
+const ChartThree = dynamic(() => import("@/components/Charts/ChartThree"), {
   ssr: false,
 });
 
