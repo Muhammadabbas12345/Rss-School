@@ -4,10 +4,12 @@ import { ApexOptions } from "apexcharts";
 import React from "react";
 import dynamic from "next/dynamic";
 
+// Load the ReactApexChart component dynamically (for Next.js)
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
+// Define the chart options with correct settings
 const options: ApexOptions = {
   colors: ["#3C50E0", "#80CAEE"],
   chart: {
@@ -22,7 +24,6 @@ const options: ApexOptions = {
       enabled: false,
     },
   },
-
   responsive: [
     {
       breakpoint: 1536,
@@ -41,16 +42,14 @@ const options: ApexOptions = {
       horizontal: false,
       borderRadius: 0,
       columnWidth: "25%",
-      borderRadiusApplication: "end",
-      borderRadiusWhenStacked: "last",
+      // Removed unsupported properties
     },
   },
   dataLabels: {
     enabled: false,
   },
-
   xaxis: {
-    categories: ["M", "T", "W", "T", "F", "S", "S"],
+    categories: ["M", "T", "W", "T", "F", "S", "S"], // Days of the week
   },
   legend: {
     position: "top",
@@ -58,32 +57,18 @@ const options: ApexOptions = {
     fontFamily: "Satoshi",
     fontWeight: 500,
     fontSize: "14px",
-
-    markers: {
-      radius: 99,
-    },
   },
   fill: {
     opacity: 1,
   },
 };
 
-interface ChartTwoState {
-  series: {
-    name: string;
-    data: number[];
-  }[];
-}
-
 const ChartTwo: React.FC = () => {
+  // Define the series data
   const series = [
     {
       name: "Sales",
-      data: [44, 55, 41, 67, 22, 43, 65],
-    },
-    {
-      name: "Revenue",
-      data: [13, 23, 20, 8, 13, 27, 15],
+      data: [44, 55, 41, 67, 22, 43, 65], // Example data
     },
   ];
 
@@ -92,7 +77,7 @@ const ChartTwo: React.FC = () => {
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
-            Profit this week
+            School Overview
           </h4>
         </div>
         <div>
