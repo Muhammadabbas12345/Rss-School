@@ -3,20 +3,20 @@ import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
-  title: "Next.js Alerts | TailAdmin - Next.js Dashboard Template",
+  title: "Next.js Announcements | TailAdmin - Next.js Dashboard Template",
   description:
-    "This is Next.js Alerts page for TailAdmin - Next.js Tailwind CSS Admin Dashboard Template",
+    "This is Next.js Announcements page for TailAdmin - Next.js Tailwind CSS Admin Dashboard Template",
   // other metadata
 };
 
-const Alerts = () => {
+const Announcements = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Alerts" />
+      <Breadcrumb pageName="Announcement" />
 
       <div className="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark md:p-6 xl:p-9">
         <div className="flex flex-col gap-7.5">
-          {/* <!-- Alerts Item --> */}
+          {/* <!-- Announcements Item --> */}
           <div className="flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
               <svg
@@ -43,7 +43,7 @@ const Alerts = () => {
               </p>
             </div>
           </div>
-          {/* <!-- Alerts Item --> */}
+          {/* <!-- Announcements Item --> */}
           <div className="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]">
               <svg
@@ -70,7 +70,7 @@ const Alerts = () => {
               </p>
             </div>
           </div>
-          {/* <!-- Alerts Item --> */}
+          {/* <!-- Announcements Item --> */}
           <div className="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#F87171]">
               <svg
@@ -104,4 +104,4 @@ const Alerts = () => {
   );
 };
 
-export default Alerts;
+export default Announcements;
