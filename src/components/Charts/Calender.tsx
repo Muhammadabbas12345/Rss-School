@@ -115,7 +115,7 @@ const Calendar: React.FC = () => {
 
   return (
     <div className="col-span-12 rounded-sm  bg-white px-5 pb-5 pt-7.5 shadow-default  dark:bg-boxdark sm:px-7.5 xl:col-span-5 rounded-md">
-      <h1 className="text-xl font-bold text-black mb-4 dark:text-white"> Calendar</h1>
+      <h1 className="text-xl font-bold text-black mb-4 dark:text-white"> Calender</h1>
       <div className="mt-4">
         {renderHeader()}
         {renderDays()}

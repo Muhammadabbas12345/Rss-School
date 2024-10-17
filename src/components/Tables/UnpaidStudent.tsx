@@ -117,7 +117,7 @@ const UnpaidStudent = () => {
 
   return (
     <div className="rounded-md border border-stroke bg-white dark:bg-boxdark  pb-2.5 pt-6 shadow-default dark:border-strokedark dark:text-white text-black  xl:pb-1">
-      <h4 className="mb-6 text-xl font-semibold dark:text-white font-semibold px-7.5">Unpaid Student Intuition</h4>
+      <h4 className="mb-6 text-xl font-semibold dark:text-white font-semibold px-7.5">Unpaid Students Intuition</h4>
 
       <div className="overflow-x-auto">
         <table className="w-full text-left">
