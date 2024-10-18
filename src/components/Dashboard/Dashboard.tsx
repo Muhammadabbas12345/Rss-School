@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import ChartOne from "../Charts/ChartOne";
 import ChartTwo from "../Charts/ChartTwo";
-// import UnpaidStudent from "../Tables/UnpaidStudent";
+import UnpaidStudent from "../Tables/UnpaidStudent";
 import CardDataStats from "../CardDataStats";
 
 const TeachersDetail = dynamic(() => import("@/components/TeachersDetail/TeachersDetail"), {
@@ -95,6 +95,7 @@ const ECommerce: React.FC = () => {
         <Calender />
         <TeachersDetail />
         <div className="col-span-24 xl:col-span-12">
+        <UnpaidStudent />
        
         </div>
       </div>

@@ -33,7 +33,7 @@ const TeachersDetail = () => {
     return (
       <span
         className={`px-2 py-1 rounded-md text-white text-sm ${
-          performance === "Good" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
+          performance === "Good" ? "bg-green-500 text-green-600" : "bg-red-400 text-red-600"
         }`}
       >
         {performance}
