@@ -1,12 +1,12 @@
 // import SchoolEvent from "../school-event/page"
 
-import LocalEvents from "@/components/Events/LocalEvents";
+import DefaulterTable from "@/components/defaulter";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 const LocalEvent = () => {
   return (
     <DefaultLayout>
-      <LocalEvents />
+      <DefaulterTable/>
     </DefaultLayout>
   );
 };
