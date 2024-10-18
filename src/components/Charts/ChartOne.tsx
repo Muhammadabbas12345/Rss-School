@@ -10,11 +10,11 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 
 const options: ApexOptions = {
   legend: {
-    show: false,
+    show: true,
     position: "top",
     horizontalAlign: "left",
   },
-  colors: ["#3C50E0", "#80CAEE"],
+  colors: ["#3C50E0", "#FF6F61"], // Updated colors to match the chart (blue and red)
   chart: {
     fontFamily: "Satoshi, sans-serif",
     height: 335,
@@ -27,37 +27,14 @@ const options: ApexOptions = {
       left: 0,
       opacity: 0.1,
     },
-
     toolbar: {
       show: false,
     },
   },
-  responsive: [
-    {
-      breakpoint: 1024,
-      options: {
-        chart: {
-          height: 300,
-        },
-      },
-    },
-    {
-      breakpoint: 1366,
-      options: {
-        chart: {
-          height: 350,
-        },
-      },
-    },
-  ],
   stroke: {
     width: [2, 2],
-    curve: "straight",
+    curve: "smooth", // Changed to smooth to match the wavy chart style
   },
-  // labels: {
-  //   show: false,
-  //   position: "top",
-  // },
   grid: {
     xaxis: {
       lines: {
@@ -76,33 +53,16 @@ const options: ApexOptions = {
   markers: {
     size: 4,
     colors: "#fff",
-    strokeColors: ["#3056D3", "#80CAEE"],
+    strokeColors: ["#3C50E0", "#FF6F61"],
     strokeWidth: 3,
-    strokeOpacity: 0.9,
-    strokeDashArray: 0,
     fillOpacity: 1,
-    discrete: [],
     hover: {
-      size: undefined,
       sizeOffset: 5,
     },
   },
   xaxis: {
     type: "category",
-    categories: [
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-    ],
+    categories: ["Week 01", "Week 02", "Week 03", "Week 04", "Week 05", "Week 06"], // Updated weeks to match the chart
     axisBorder: {
       show: false,
     },
@@ -111,70 +71,50 @@ const options: ApexOptions = {
     },
   },
   yaxis: {
-    title: {
-      style: {
-        fontSize: "0px",
-      },
-    },
-    min: 0,
-    max: 100,
+    min: 160000, // Minimum y-axis value (160k)
+    max: 560000, // Maximum y-axis value (560k)
   },
 };
 
-interface ChartOneState {
-  series: {
-    name: string;
-    data: number[];
-  }[];
-}
-
 const ChartOne: React.FC = () => {
   const series = [
-      {
-        name: "Product One",
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
-      },
-
-      {
-        name: "Product Two",
-        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
-      },
-    ]
+    {
+      name: "This Week",
+      data: [320000, 260000, 350000, 230000, 480000, 290000], // Updated data points for 'This Week'
+    },
+    {
+      name: "Last Week",
+      data: [480000, 360000, 460000, 250000, 540000, 340000], // Updated data points for 'Last Week'
+    },
+  ];
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
-        <div className="flex w-full flex-wrap gap-3 sm:gap-5">
+        <div className="flex w-full flex-wrap justify-between sm:gap-5">
           <div className="flex min-w-47.5">
-            <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-primary">
-              <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
-            </span>
             <div className="w-full">
-              <p className="font-semibold text-primary">Total Revenue</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              <p className="font-bold text-black text-2xl">School Performance</p>
             </div>
           </div>
           <div className="flex min-w-47.5">
-            <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-secondary">
-              <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
+            <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border-4 border-primary">
+              <span className="block h-2 w-full max-w-2 rounded-full"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-secondary">Total Sales</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              <p className="text-black">This Week</p>
+              <p className="text-md text-black font-bold">1.245</p>
             </div>
           </div>
-        </div>
-        <div className="flex w-full max-w-45 justify-end">
-          <div className="inline-flex items-center rounded-md bg-whiter p-1.5 dark:bg-meta-4">
-            <button className="rounded bg-white px-3 py-1 text-xs font-medium text-black shadow-card hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark">
-              Day
-            </button>
-            <button className="rounded px-3 py-1 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-              Week
-            </button>
-            <button className="rounded px-3 py-1 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-              Month
-            </button>
+
+          <div className="flex min-w-47.5">
+            <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border-4 border-secondary">
+              <span className="block h-2 w-full max-w-2 rounded-full"></span>
+            </span>
+            <div className="w-full">
+              <p className="text-black">Last Week</p>
+              <p className="text-md text-black font-bold">1.356</p>
+            </div>
           </div>
         </div>
       </div>
