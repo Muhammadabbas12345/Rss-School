@@ -52,11 +52,11 @@ export default function Teachers() {
 
   return (
     <div className="container mx-auto px-4 sm:px-2 py-2 ">
-      <div className="flex justify-between mb-4 bg-white p-4 dark:bg-boxdark ">
+      <div className="flex justify-between mb-4 bg-white  p-4 dark:bg-boxdark ">
         <input
           type="text"
           placeholder="Search here..."
-          className="border border-gray-300 rounded px-3 py-2 dark:bg-boxdark "
+          className="border dark:border-gray-300 border-black rounded px-3 py-2 dark:bg-boxdark outline-none w-[30%] "
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
