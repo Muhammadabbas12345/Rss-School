@@ -58,18 +58,18 @@ const DefaulterTable = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6  dark:bg-boxdark-2 dark:text-bodydark h-screen">
       <h2 className="text-xl font-semibold mb-4">Fee Defaulter List</h2>
 
       {/* Add/Edit Form */}
-      <div className="mb-6">
+      <div className="mb-6  dark:bg-boxdark-2 dark:text-bodydark">
         <input
           type="text"
           name="name"
           value={newDefaulter.name}
           placeholder="Name"
           onChange={handleInputChange}
-          className="border px-4 py-2 mr-2"
+          className="border px-4 py-2 mr-2  dark:bg-boxdark-2 dark:text-bodydark"
         />
         <input
           type="number"
@@ -77,7 +77,7 @@ const DefaulterTable = () => {
           value={newDefaulter.amount}
           placeholder="Amount"
           onChange={handleInputChange}
-          className="border px-4 py-2 mr-2"
+          className="border px-4 py-2 mr-2  dark:bg-boxdark-2 dark:text-bodydark"
         />
         <input
           type="text"
@@ -85,19 +85,19 @@ const DefaulterTable = () => {
           value={newDefaulter.class}
           placeholder="Class"
           onChange={handleInputChange}
-          className="border px-4 py-2 mr-2"
+          className="border px-4 py-2 mr-2  dark:bg-boxdark-2 dark:text-bodydark"
         />
         {editingId ? (
           <button
             onClick={handleUpdate}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-opacity-70"
           >
             Update
           </button>
         ) : (
           <button
             onClick={handleAdd}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 dark:bg-opacity-70"
           >
             Add
           </button>
@@ -105,9 +105,9 @@ const DefaulterTable = () => {
       </div>
 
       {/* Defaulter Table */}
-      <table className="table-auto w-full bg-white border border-gray-200">
+      <table className="table-auto w-full bg-white border border-gray-200 text-center dark:bg-boxdark-2 dark:text-bodydark">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-blue-600 text-white dark:bg-boxdark dark:text-bodydark">
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Pay Amount</th>
             <th className="px-4 py-2">Class</th>
@@ -116,7 +116,7 @@ const DefaulterTable = () => {
         </thead>
         <tbody>
           {defaulters.map((defaulter) => (
-            <tr key={defaulter.id} className="border-b">
+            <tr key={defaulter.id} className="border-b dark:text-bodydark">
               <td className="px-4 py-2">{defaulter.name}</td>
               <td className="px-4 py-2">{defaulter.amount}</td>
               <td className="px-4 py-2">{defaulter.class}</td>
@@ -128,7 +128,7 @@ const DefaulterTable = () => {
                   Edit
                 </button>
                 <button
-                  className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 dark:bg-opacity-70 "
                   onClick={() => handleDelete(defaulter.id)}
                 >
                   Delete

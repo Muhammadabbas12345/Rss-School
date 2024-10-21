@@ -17,7 +17,7 @@ const Calender = dynamic(() => import("@/components/Charts/Calender"), {
 const ECommerce: React.FC = () => {
   return (
     <>
-  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 ">
   <CardDataStats title="Students" total="932" rate="" levelUp={false}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
