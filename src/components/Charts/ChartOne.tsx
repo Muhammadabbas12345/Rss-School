@@ -94,16 +94,16 @@ const ChartOne: React.FC = () => {
         <div className="flex w-full flex-wrap justify-between sm:gap-5">
           <div className="flex min-w-47.5">
             <div className="w-full">
-              <p className="font-bold text-black text-2xl">School Performance</p>
+              <p className="font-bold text-black text-2xl dark:text-white">School Performance</p>
             </div>
           </div>
           <div className="flex min-w-47.5">
             <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border-4 border-primary">
               <span className="block h-2 w-full max-w-2 rounded-full"></span>
             </span>
-            <div className="w-full">
-              <p className="text-black">This Week</p>
-              <p className="text-md text-black font-bold">1.245</p>
+            <div className="w-full dark:text-white">
+              <p className="text-black dark:text-white">This Week</p>
+              <p className="text-md text-black font-bold dark:text-white">1.245</p>
             </div>
           </div>
 
@@ -112,8 +112,8 @@ const ChartOne: React.FC = () => {
               <span className="block h-2 w-full max-w-2 rounded-full"></span>
             </span>
             <div className="w-full">
-              <p className="text-black">Last Week</p>
-              <p className="text-md text-black font-bold">1.356</p>
+              <p className="text-black dark:text-white">Last Week</p>
+              <p className="text-md text-black font-bold dark:text-white">1.356</p>
             </div>
           </div>
         </div>
