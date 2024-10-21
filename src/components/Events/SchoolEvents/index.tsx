@@ -45,11 +45,11 @@ const schoolEvents = () => {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2  lg:grid-cols-3">
           {events.map((event) => (
-            <div key={event.id} className="rounded-lg bg-white dark:bg-[#1B1B24] shadow-md dark:bg-opacity-30 dark:text-white p-6 shadow-lg">
+            <div key={event.id} className="rounded-lg bg-white dark:bg-[#1B1B24] dark:text-bodydark shadow-md dark:bg-opacity-30 dark:text-white p-6 shadow-lg">
               <h3 className="mb-2 text-2xl font-semibold text-indigo-600">
                 {event.name}
               </h3>
-              <p className="text-gray-600 dark:text-white">
+              <p className="text-gray-600 ">
                 <span className="font-semibold">Date: </span>
                 {new Date(event.date).toLocaleDateString("en-US", {
                   weekday: "long",

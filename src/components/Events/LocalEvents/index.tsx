@@ -49,7 +49,7 @@ const LocalEvents = () => {
   return (
     <section className="bg-gray-100 py-12 dark:border-strokedark dark:bg-boxdark">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold dark:text-white text-center mb-8 text-gray-800 ">
+        <h2 className="text-3xl font-bold dark:text-bodydark text-center mb-8 text-gray-800 ">
           Local Events in Gilgit-Baltistan
         </h2>
 
@@ -58,7 +58,7 @@ const LocalEvents = () => {
           {events.map((event) => (
             <div
               key={event.id}
-              className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 dark:bg-boxdark-2 dark:text-bodydark"
             >
               <h3 className="text-xl font-semibold text-indigo-600 mb-2">
                 {event.name}
