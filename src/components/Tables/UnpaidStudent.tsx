@@ -117,7 +117,7 @@ const UnpaidStudent = () => {
 
   return (
     <div className="rounded-md border border-stroke bg-white dark:bg-boxdark  pb-2.5 pt-6 shadow-default dark:border-strokedark dark:text-white text-black  xl:pb-1">
-      <h4 className="mb-6 text-xl font-semibold dark:text-white font-semibold px-7.5">Unpaid Student Intuition</h4>
+      <h4 className="mb-6 text-xl font-semibold dark:text-white  px-7.5">Unpaid Student Intuition</h4>
 
       <div className="overflow-x-auto">
         <table className="w-full text-left">
@@ -134,7 +134,7 @@ const UnpaidStudent = () => {
           <tbody>
             {currentStudents.map((student, index) => (
               <tr key={index} className="border-b border-stroke dark:border-strokedark text-sm " >
-                <td className="py-3 px-4 flex items-center px-7.5">
+                <td className="py-3  flex items-center px-7.5">
                   <Image
                     src={student.avatar}
                     alt="Student Avatar"
