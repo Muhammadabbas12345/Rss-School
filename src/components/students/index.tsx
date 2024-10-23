@@ -1,18 +1,17 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaEllipsisV } from 'react-icons/fa';
 
-// Define a type for each student's data
 type Student = {
   id: number;
   name: string;
   date: string;
   parentName: string;
   city: string;
-  contact: string; // Phone number
-  email: string;   // Email address
+  contact: string;
+  email: string;
   grade: string;
-  profilePic: string;  // Add profile picture field
+  profilePic: string;
 };
 
 export default function StudentTable() {
@@ -67,10 +66,23 @@ export default function StudentTable() {
     }
   };
 
+  // Handle main checkbox (select all)
+  const handleMainCheckbox = (): void => {
+    if (selectedStudents.length === students.length) {
+      setSelectedStudents([]); // Deselect all
+    } else {
+      setSelectedStudents(students.map((student) => student.id)); // Select all
+    }
+  };
 
-  
-  // Handle the "Delete" action
-  const handleDelete = (id: number): void => {
+  // Handle bulk delete action
+  const handleBulkDelete = (): void => {
+    setStudents(students.filter((student) => !selectedStudents.includes(student.id)));
+    setSelectedStudents([]); // Clear selected students after deletion
+  };
+
+  // Handle individual delete action from the popup
+  const handleDeleteSingleStudent = (id: number): void => {
     setStudents(students.filter((student) => student.id !== id));
   };
 
@@ -92,15 +104,17 @@ export default function StudentTable() {
   // Open view modal
   const handleView = (student: Student): void => {
     setViewModal(student);
+    setActivePopup(null);
   };
 
   // Open edit modal
   const handleEdit = (student: Student): void => {
     setEditModal(student);
     setImagePreview(student.profilePic); // Set the current profile picture in preview
+    setActivePopup(null);
   };
 
-  // Handle edit form submission (for demo purposes)
+  // Handle edit form submission
   const handleEditSubmit = (updatedStudent: Student): void => {
     setStudents(students.map(student => student.id === updatedStudent.id ? updatedStudent : student));
     setEditModal(null); // Close modal after submitting
@@ -120,11 +134,35 @@ export default function StudentTable() {
 
   return (
     <div className="overflow-x-auto h-screen">
-      <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden  dark:bg-boxdark-2 dark:text-bodydark">
+      <div className="flex justify-end mb-4">
+        {selectedStudents.length > 0 && (
+          <div className="flex space-x-4">
+            <button
+              onClick={handleBulkDelete}
+              className="bg-red-500 text-white py-2 px-4 rounded"
+            >
+              Delete
+            </button>
+            <a
+              href={getEmailUrl(students.find(student => selectedStudents.includes(student.id))?.email || '')}
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+            >
+              Mail
+            </a>
+          </div>
+        )}
+      </div>
+
+      <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden dark:bg-boxdark-2 dark:text-bodydark">
         <thead>
-          <tr className="bg-pink-100 text-pink-600  dark:bg-boxdark dark:text-bodydark"> {/* Playful colors */}
+          <tr className="bg-blue-100 text-blue-600 dark:bg-boxdark dark:text-bodydark">
             <th className="p-4">
-              <input type="checkbox" className="form-checkbox h-5 w-5 rounded-full" />
+              <input
+                type="checkbox"
+                className="form-checkbox h-5 w-5 rounded-full"
+                onChange={handleMainCheckbox}
+                checked={selectedStudents.length === students.length && students.length > 0}
+              />
             </th>
             <th className="p-4 text-left">Student</th>
             <th className="p-4 text-left">ID</th>
@@ -138,7 +176,7 @@ export default function StudentTable() {
         </thead>
         <tbody>
           {students.map((student) => (
-            <tr key={student.id} className="border-t bg-white hover:bg-pink-50 transition-all  dark:bg-boxdark-2 dark:text-bodydark"> {/* Softer hover */}
+            <tr key={student.id} className="border-t bg-white hover:bg-blue-50 transition-all dark:bg-boxdark-2 dark:text-bodydark">
               <td className="p-4">
                 <input
                   type="checkbox"
@@ -147,19 +185,19 @@ export default function StudentTable() {
                   onChange={() => handleCheckboxChange(student.id)}
                 />
               </td>
-              <td className="p-4 flex items-center space-x-4"> {/* Align image and text */}
+              <td className="p-4 flex items-center space-x-4">
                 <img
                   src={student.profilePic}
                   alt={student.name}
                   className="w-10 h-10 rounded-full shadow-lg"
                 />
-                <span className="text-pink-700">{student.name}</span> {/* Colorful name */}
+                <span className="text-blue-700">{student.name}</span>
               </td>
               <td className="p-4">{student.id}</td>
               <td className="p-4">{student.date}</td>
               <td className="p-4">{student.parentName}</td>
               <td className="p-4">{student.city}</td>
-              <td className="p-4 flex space-x-4"> {/* Contact with icons */}
+              <td className="p-4 flex space-x-4">
                 <a href={getWhatsAppUrl(student.contact)} target="_blank" rel="noopener noreferrer">
                   <FaPhoneAlt className="text-green-400 hover:text-green-600 w-5 h-5" />
                 </a>
@@ -168,32 +206,28 @@ export default function StudentTable() {
                 </a>
               </td>
               <td className="p-4">{student.grade}</td>
-              <td className="relative p-4">
-                <button
-                  className="focus:outline-none"
-                  onClick={() => togglePopup(student.id)}
-                >
-                  <FaEllipsisV className="w-5 h-5 text-pink-500 hover:text-pink-700" />
+              <td className="p-4">
+                <button className="focus:outline-none" onClick={() => togglePopup(student.id)}>
+                  <FaEllipsisV className="w-5 h-5 text-blue-500 hover:text-blue-700" />
                 </button>
 
-                {/* Popup Menu */}
                 {activePopup === student.id && (
-                  <div className="absolute right-0 mt-2 w-32 bg-white border rounded-lg shadow-lg z-10  dark:bg-boxdark-2 dark:text-bodydark">
+                  <div className="absolute right-0 mt-2 w-32 bg-white border rounded-lg shadow-lg z-10 dark:bg-boxdark-2 dark:text-bodydark">
                     <button
-                      className="block w-full px-4 py-2 text-left text-sm hover:bg-pink-100"
-                      onClick={() => handleEdit(student)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="block w-full px-4 py-2 text-left text-sm hover:bg-pink-100"
+                      className="block w-full px-4 py-2 text-left text-sm hover:bg-blue-100"
                       onClick={() => handleView(student)}
                     >
                       View
                     </button>
                     <button
-                      className="block w-full px-4 py-2 text-left text-sm text-red-500 hover:bg-pink-100"
-                      onClick={() => handleDelete(student.id)}
+                      className="block w-full px-4 py-2 text-left text-sm hover:bg-blue-100"
+                      onClick={() => handleEdit(student)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="block w-full px-4 py-2 text-left text-sm text-red-500 hover:bg-blue-100"
+                      onClick={() => handleDeleteSingleStudent(student.id)}
                     >
                       Delete
                     </button>
@@ -207,109 +241,92 @@ export default function StudentTable() {
 
       {/* View Modal */}
       {viewModal && (
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg w-96  dark:bg-boxdark-2 dark:text-bodydark">
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">View Student</h2>
-              <div className="flex items-center space-x-4 mb-4">
-                <img
-                  src={viewModal.profilePic}
-                  alt={viewModal.name}
-                  className="w-16 h-16 rounded-full shadow-lg"
-                />
-                <div>
-                  <h3 className="text-lg font-semibold">{viewModal.name}</h3>
-                  <p>{viewModal.email}</p>
-                  <p>{viewModal.contact}</p>
-                </div>
-              </div>
-              <div>
-                <p>Parent Name: {viewModal.parentName}</p>
-                <p>City: {viewModal.city}</p>
-                <p>Grade: {viewModal.grade}</p>
-              </div>
-            </div>
-            <div className="p-4 text-right">
-              <button
-                className="bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-lg  dark:bg-boxdark-2 dark:text-bodydark"
-                onClick={() => setViewModal(null)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
+       <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center">
+       <div className="bg-white p-6 rounded-lg shadow-2xl w-96 transform transition-transform duration-300 ease-in-out">
+         <h2 className="text-2xl font-extrabold text-gray-800 mb-6 text-center">Student Details</h2>
+         
+         <div className="flex flex-col items-center mb-6">
+           <img
+             src={viewModal.profilePic}
+             alt={viewModal.name}
+             className="w-28 h-28 rounded-full mb-4 shadow-lg border-4 border-blue-400"
+           />
+           <h3 className="text-xl font-semibold text-gray-700">{viewModal.name}</h3>
+           <p className="text-gray-500">{viewModal.city}</p>
+         </div>
+     
+         <div className="space-y-4 text-gray-600 text-left">
+           <p><strong className="text-gray-700">Parent Name:</strong> {viewModal.parentName}</p>
+           <p><strong className="text-gray-700">City:</strong> {viewModal.city}</p>
+         </div>
+     
+         <button
+           onClick={() => setViewModal(null)}
+           className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-colors duration-200 ease-in-out"
+         >
+           Close
+         </button>
+       </div>
+     </div>
+     
       )}
 
       {/* Edit Modal */}
       {editModal && (
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg w-96  dark:bg-boxdark-2 dark:text-bodydark">
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">Edit Student</h2>
-              <div className="flex items-center space-x-4 mb-4">
-                {imagePreview && (
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    className="w-16 h-16 rounded-full shadow-lg"
-                  />
-                )}
-                <input type="file" onChange={handleImageChange} />
-              </div>
-              <div>
-                <label className="block mb-2">Name</label>
-                <input
-                  type="text"
-                  value={editModal.name}
-                  onChange={(e) => setEditModal({ ...editModal, name: e.target.value })}
-                  className="w-full border rounded-lg p-2  dark:bg-boxdark-2 dark:text-bodydark"
-                />
-              </div>
-              <div>
-                <label className="block mb-2">Email</label>
-                <input
-                  type="email"
-                  value={editModal.email}
-                  onChange={(e) => setEditModal({ ...editModal, email: e.target.value })}
-                  className="w-full border rounded-lg p-2  dark:bg-boxdark-2 dark:text-bodydark"
-                />
-              </div>
-              <div>
-                <label className="block mb-2">Contact</label>
-                <input
-                  type="text"
-                  value={editModal.contact}
-                  onChange={(e) => setEditModal({ ...editModal, contact: e.target.value }) }
-                  className="w-full border rounded-lg p-2  dark:bg-boxdark-2 dark:text-bodydark"
-                />
-              </div>
-              <div>
-                <label className="block mb-2">Grade</label>
-                <input
-                  type="text"
-                  value={editModal.grade}
-                  onChange={(e) => setEditModal({ ...editModal, grade: e.target.value })}
-                  className="w-full border rounded-lg p-2  dark:bg-boxdark-2 dark:text-bodydark"
-                />
-              </div>
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center">
+        <div className="bg-white p-6 rounded-lg shadow-2xl w-96 transition-transform transform duration-300 ease-in-out">
+          <h2 className="text-2xl font-extrabold text-gray-800 mb-6 text-center">Edit Student</h2>
+          
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            handleEditSubmit(editModal);
+          }}>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                value={editModal.name}
+                onChange={(e) => setEditModal({ ...editModal, name: e.target.value })}
+                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
             </div>
-            <div className="p-4 text-right">
+      
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profile-pic">
+                Profile Picture
+              </label>
+              <input
+                id="profile-pic"
+                type="file"
+                onChange={handleImageChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+              {imagePreview && (
+                <img src={imagePreview} alt="Preview" className="mt-4 w-24 h-24 rounded-full border-4 border-blue-400 shadow-lg mx-auto" />
+              )}
+            </div>
+      
+            <div className="flex justify-between mt-6">
               <button
-                className="bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-lg"
-                onClick={() => handleEditSubmit(editModal)}
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 ease-in-out shadow-lg mr-2"
               >
                 Save
               </button>
               <button
-                className="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg"
                 onClick={() => setEditModal(null)}
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 ease-in-out shadow-lg ml-2"
               >
                 Cancel
               </button>
             </div>
-          </div>
+          </form>
         </div>
+      </div>
+      
       )}
     </div>
   );
