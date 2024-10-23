@@ -7,13 +7,17 @@ type AddpopupTeacherProps = {
     id: number;
     name: string;
     position: string;
-    contact:string;
+    contact: string;
     subjects: string[];
     image: string;
   }) => void;
 };
 
-const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({ isVisible, onClose, onSubmit }) => {
+const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({
+  isVisible,
+  onClose,
+  onSubmit,
+}) => {
   const [image, setImage] = useState<string | null>(null);
   const [subjects, setSubjects] = useState<string[]>([""]); // Initial empty subject
 
@@ -47,50 +51,70 @@ const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({ isVisible, onClose, o
     const newTeacher = {
       id: Math.random(), // You can replace this with a better ID generation logic
       name: formData.get("name") as string,
-      contact:formData.get("contact") as string,
+      contact: formData.get("contact") as string,
       position: formData.get("position") as string,
-      subjects: subjects.filter(subject => subject.trim() !== ""), // Remove empty subjects
-      image: image || ""
+      subjects: subjects.filter((subject) => subject.trim() !== ""), // Remove empty subjects
+      image: image || "",
     };
 
     onSubmit(newTeacher);
   };
-  
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded shadow-lg dark:bg-black dark:text-white w-[30%]">
-        <div className="flex justify-between items-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="w-[30%] rounded bg-white p-6 shadow-lg dark:bg-black dark:text-white">
+        <div className="flex items-center justify-between">
           <h2 className="text-2xl">Teacher Detail</h2>
-          <button onClick={onClose} className="text-gray-500 dark:text-white text-2xl hover:text-black">&times;</button>
+          <button
+            onClick={onClose}
+            className="text-2xl text-gray-500 hover:text-black dark:text-white"
+          >
+            &times;
+          </button>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
-            <label className="block mb-1">Name</label>
-            <input name="name" type="text" className="border w-full p-2 dark:bg-boxdark" required />
+            <label className="mb-1 block">Name</label>
+            <input
+              name="name"
+              type="text"
+              className="w-full border p-2 dark:bg-boxdark"
+              required
+            />
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Contact</label>
-            <input name="contact" type="text" className="border w-full p-2 dark:bg-boxdark" required />
+            <label className="mb-1 block">Contact</label>
+            <input
+              name="contact"
+              type="text"
+              className="w-full border p-2 dark:bg-boxdark"
+              required
+            />
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Position</label>
-            <input name="position" type="text" className="border w-full p-2 dark:bg-boxdark" required />
+            <label className="mb-1 block">Position</label>
+            <input
+              name="position"
+              type="text"
+              className="w-full border p-2 dark:bg-boxdark"
+              required
+            />
           </div>
           <div className="mb-4">
-            <label className="block mb-2">Subjects</label>
+            <label className="mb-2 block">Subjects</label>
             {subjects.map((subject, index) => (
-              <div key={index} className="flex items-center mb-2">
+              <div key={index} className="mb-2 flex items-center">
                 <input
                   type="text"
                   value={subject}
                   onChange={(e) => handleSubjectChange(index, e.target.value)}
-                  className="border w-full p-2 dark:bg-boxdark"
+                  className="w-full border p-2 dark:bg-boxdark"
                   placeholder={`Subject ${index + 1}`}
                 />
                 <button
                   type="button"
                   onClick={() => handleRemoveSubject(index)}
-                  className="ml-2 bg-red-500 text-white px-3 py-1 rounded"
+                  className="ml-2 rounded bg-red-500 px-3 py-1 text-white"
                 >
                   Remove
                 </button>
@@ -99,26 +123,41 @@ const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({ isVisible, onClose, o
             <button
               type="button"
               onClick={handleAddSubject}
-              className="bg-blue-500 text-white px-3 py-1 rounded"
+              className="rounded bg-blue-500 px-3 py-1 text-white"
             >
               Add Subject
             </button>
           </div>
           <div className="mb-4">
-            <label className="block mb-2">Profile Image</label>
+            <label className="mb-2 block">Profile Image</label>
             <input
               type="file"
               accept="image/*"
               onChange={handleImageChange}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:bg-boxdark dark:text-white"
+              className="block w-full cursor-pointer rounded-lg border border-gray-300 text-sm text-gray-900 dark:bg-boxdark dark:text-white"
             />
             {image && (
-              <img src={image} alt="Profile Preview" className="mt-2 w-24 h-24 object-cover rounded-full" />
+              <img
+                src={image}
+                alt="Profile Preview"
+                className="mt-2 h-24 w-24 rounded-full object-cover"
+              />
             )}
           </div>
           <div className="flex justify-end gap-2">
-            <button type="button" onClick={onClose} className="bg-gray-300 px-4 py-2 rounded dark:bg-blue-400">Cancel</button>
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add Teacher</button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded bg-gray-300 px-4 py-2 dark:bg-blue-400"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="rounded bg-blue-500 px-4 py-2 text-white"
+            >
+              Add Teacher
+            </button>
           </div>
         </form>
       </div>
