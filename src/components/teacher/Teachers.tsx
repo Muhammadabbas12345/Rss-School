@@ -5,26 +5,29 @@ import AddpopupTeacher from "./AddpopupTeacher";
 type Teacher = {
   id: number;
   name: string;
+  contact:string
   position: string;
   subjects: string[];
   image: string;
 };
+const getWhatsAppUrl = (phone: string): string => {
+  return `https://wa.me/${phone}`;
+};
 
-
-
+{/* */}
 const teachersData: Teacher[] = [
-  { id: 1, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-01.png" },
-  { id: 2, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-02.png" },
-  { id: 3, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-03.png" },
-  { id: 4, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-04.png" },
-  { id: 5, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-05.png" },
-  { id: 6, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-06.png" },
-  { id: 7, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-07.png" },
-  { id: 8, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-08.png" },
-  { id: 9, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-09.png" },
-  { id: 10, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-10.png" },
-  { id: 11, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-11.png" },
-  { id: 12, name: "Dimitres Viga", position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-12.png" },
+  { id: 1, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-01.png" },
+  { id: 2, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-02.png" },
+  { id: 3, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-03.png" },
+  { id: 4, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-04.png" },
+  { id: 5, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-05.png" },
+  { id: 6, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-06.png" },
+  { id: 7, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-07.png" },
+  { id: 8, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-08.png" },
+  { id: 9, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-09.png" },
+  { id: 10, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-10.png" },
+  { id: 11, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-11.png" },
+  { id: 12, name: "Dimitres Viga", contact:'032565565', position: "Teacher", subjects: ["Mathematics", "Science", "Art"], image: "/images/user/user-12.png" },
 ];
 
 
@@ -48,7 +51,7 @@ export default function Teachers() {
   const filteredTeachers = teachers.filter((teacher) =>
     (teacher.name?.toLowerCase() || '').includes(search.toLowerCase())
   );
-  
+  console.log(filteredTeachers ,"heloo")
 
   return (
     <div className="container mx-auto px-4 sm:px-2 py-2 ">
@@ -98,7 +101,11 @@ export default function Teachers() {
               <button className="bg-purple-500 text-white px-3 py-1 rounded w-full">
                 Profile
               </button>
-              <button className="bg-gray-300 px-3 py-1 rounded w-full dark:bg-blue-400 ">Chat</button>
+              <button className="bg-gray-300 px-3 py-1 rounded w-full dark:bg-blue-400 ">
+              <a href={getWhatsAppUrl(teacher.contact)} target="_blank" rel="noopener noreferrer">
+                  chat
+                </a>
+                </button>
             </div>
           </div>
         ))}

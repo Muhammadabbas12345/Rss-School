@@ -7,6 +7,7 @@ type AddpopupTeacherProps = {
     id: number;
     name: string;
     position: string;
+    contact:string;
     subjects: string[];
     image: string;
   }) => void;
@@ -46,6 +47,7 @@ const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({ isVisible, onClose, o
     const newTeacher = {
       id: Math.random(), // You can replace this with a better ID generation logic
       name: formData.get("name") as string,
+      contact:formData.get("contact") as string,
       position: formData.get("position") as string,
       subjects: subjects.filter(subject => subject.trim() !== ""), // Remove empty subjects
       image: image || ""
@@ -53,7 +55,7 @@ const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({ isVisible, onClose, o
 
     onSubmit(newTeacher);
   };
-
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded shadow-lg dark:bg-black dark:text-white w-[30%]">
@@ -65,6 +67,10 @@ const AddpopupTeacher: React.FC<AddpopupTeacherProps> = ({ isVisible, onClose, o
           <div className="mb-4 mt-4">
             <label className="block mb-1">Name</label>
             <input name="name" type="text" className="border w-full p-2 dark:bg-boxdark" required />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-1">Contact</label>
+            <input name="contact" type="text" className="border w-full p-2 dark:bg-boxdark" required />
           </div>
           <div className="mb-4">
             <label className="block mb-1">Position</label>
