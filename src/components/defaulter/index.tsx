@@ -120,7 +120,7 @@ const DefaulterTable = () => {
               <td className="px-4 py-2">{defaulter.name}</td>
               <td className="px-4 py-2">{defaulter.amount}</td>
               <td className="px-4 py-2">{defaulter.class}</td>
-              <td className="px-4 py-2 flex space-x-2">
+              <td className="px-4 py-2 flex space-x-2 flex justify-center">
                 <button
                   className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
                   onClick={() => handleEdit(defaulter)}

@@ -1,6 +1,8 @@
 "use client";
 import { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaEllipsisV } from 'react-icons/fa';
+import Image from "next/image";
+
 
 type Student = {
   id: number;
@@ -25,7 +27,7 @@ export default function StudentTable() {
       contact: '1234567890',
       email: 'john@example.com',
       grade: 'A',
-      profilePic: 'https://randomuser.me/api/portraits/men/1.jpg',
+      profilePic: '/images/user/user-03.png',
     },
     {
       id: 2,
@@ -36,7 +38,7 @@ export default function StudentTable() {
       contact: '9876543210',
       email: 'alice@example.com',
       grade: 'B',
-      profilePic: 'https://randomuser.me/api/portraits/women/2.jpg',
+      profilePic: '/images/user/user-03.png',
     },
     {
       id: 3,
@@ -47,7 +49,7 @@ export default function StudentTable() {
       contact: '5551234567',
       email: 'sam@example.com',
       grade: 'C',
-      profilePic: 'https://randomuser.me/api/portraits/men/3.jpg',
+      profilePic: '/images/user/user-03.png',
     },
   ]);
 
@@ -246,11 +248,14 @@ export default function StudentTable() {
          <h2 className="text-2xl font-extrabold text-gray-800 mb-6 text-center">Student Details</h2>
          
          <div className="flex flex-col items-center mb-6">
-           <img
-             src={viewModal.profilePic}
-             alt={viewModal.name}
-             className="w-28 h-28 rounded-full mb-4 shadow-lg border-4 border-blue-400"
-           />
+            <Image
+                src={viewModal.profilePic}
+                alt={viewModal.name}
+                 className="w-28 h-28 rounded-full mb-4 shadow-lg border-4 border-blue-400"
+                width={150}
+                height={50}
+                priority={true}
+              />
            <h3 className="text-xl font-semibold text-gray-700">{viewModal.name}</h3>
            <p className="text-gray-500">{viewModal.city}</p>
          </div>
