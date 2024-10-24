@@ -10,8 +10,8 @@ function Homes() {
         <Image
           src= "/images/logo/logo.png"
           alt="Right Step Montessori & High School Logo"
-          width={80}  
-          height={80}  
+          width={90}  
+          height={90}  
           priority={true} 
         />
         <div className="space-x-4">
