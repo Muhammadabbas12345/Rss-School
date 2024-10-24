@@ -2,7 +2,6 @@
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Dashboard from './../components/Dashboard/Dashboard';
-import Homes from "./Home/page";
 
 
 export const metadata: Metadata = {
@@ -14,10 +13,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* <DefaultLayout> */}
-      {/* <Dashboard/> */}
-      <Homes/>
-      {/* </DefaultLayout> */}
+      <DefaultLayout>
+      <Dashboard/>
+      </DefaultLayout>
     </>
   );
 }
