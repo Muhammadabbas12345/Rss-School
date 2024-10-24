@@ -19,7 +19,7 @@ function Homes() {
 
       {/* Page Content */}
       <main className="p-8">
-        <p className="text-lg">Welcome to the RSS School homepage!</p>
+        <p className="text-lg">Welcome to the RSS School </p>
       </main>
     </div>
   );
