@@ -1,4 +1,5 @@
 import React from 'react';
+import FirstSection from './FirstSection';
 
 function Homes() {
   return (
@@ -16,8 +17,8 @@ function Homes() {
         </div>
       </header>
 
-      <main className="p-8">
-        <p className="text-lg">Welcome to the RSS School homepage!</p>
+      <main>
+       <FirstSection/>
       </main>
     </div>
   );
