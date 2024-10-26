@@ -1,5 +1,6 @@
 import React from 'react';
 import FirstSection from './FirstSection';
+import SchoolHistory from './SchoolHistory';
 
 function Homes() {
   return (
@@ -19,6 +20,7 @@ function Homes() {
 
       <main>
        <FirstSection/>
+       <SchoolHistory/>
       </main>
     </div>
   );
