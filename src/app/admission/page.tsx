@@ -1,25 +1,26 @@
+import Link from 'next/link';
 import React from 'react';
 
 function Admission() {
   return (
     <>
-      <nav className="bg-gray-200 p-4 rounded-md ">
-        <ol className="list-reset flex text-blue-600">
+      <nav className="bg-blue-600 p-4 ">
+        <ol className="list-reset flex text-white">
           <li>
-            <a href="/" className="hover:underline">Home</a>
+            <Link href="/" className="hover:underline">Home</Link>
           </li>
           <li>
             <span className="mx-2">/</span>
           </li>
           <li>
-            <a href="/admission" className="hover:underline">Admission</a>
+            <Link href="/admission" className="hover:underline">Admission</Link>
           </li>
         </ol>
         
       </nav>
 
       <div className="mt-4 flex items-center justify-center bg-gray-100">
-        <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
+        <div className="bg-white shadow-2xl rounded-lg p-8 max-w-2xl w-full">
           <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">Admission Form</h2>
           <form>
             <div className="mb-4">
