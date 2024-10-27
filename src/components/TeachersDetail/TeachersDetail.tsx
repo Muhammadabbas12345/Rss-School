@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const TeachersDetail = () => {
-  // Sample data for teachers (12 teachers)
+
   const teachers = [
     { name: "Hanu", subject: "Programming", qualification: "B.Tech", fees: "$217.70", performance: "Good" },
     { name: "Hardy", subject: "Basic Algorithm", qualification: "B.E", fees: "$17.70", performance: "Good" },
@@ -17,16 +17,13 @@ const TeachersDetail = () => {
     { name: "Emma", subject: "History", qualification: "M.Com", fees: "$60.70", performance: "Bad" },
   ];
 
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  // Calculate current teachers
   const indexOfLastTeacher = currentPage * itemsPerPage;
   const indexOfFirstTeacher = indexOfLastTeacher - itemsPerPage;
   const currentTeachers = teachers.slice(indexOfFirstTeacher, indexOfLastTeacher);
 
-  // Calculate total pages
   const totalPages = Math.ceil(teachers.length / itemsPerPage);
 
   const renderPerformanceBadge = (performance: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<React.AwaitedReactNode> | null | undefined) => {
@@ -68,7 +65,6 @@ const TeachersDetail = () => {
           </tbody>
         </table>
 
-        {/* Pagination */}
         <div className="flex justify-between items-center mt-4 px-7.5 dark:text-white">
           <span className="text-gray-600 text-md font-bold dark:text-white">
             Showing {indexOfFirstTeacher + 1} to {Math.min(indexOfLastTeacher, teachers.length)} of {teachers.length} entries
