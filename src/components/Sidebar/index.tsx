@@ -314,14 +314,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
   <aside
-    className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${
+    className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-blue-600 duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${
       sidebarOpen ? "translate-x-0" : "-translate-x-full"
     }`}
   >
-    {/* <!-- SIDEBAR HEADER --> */}
     <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
     <Link href="/">
-        {/* Replace img with Next.js Image component */}
         <Image
           src= "/images/logo/logo.png"
           alt="Right Step Montessori & High School Logo"
@@ -351,18 +349,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         </svg>
       </button>
     </div>
-    {/* <!-- SIDEBAR HEADER --> */}
 
     <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-      {/* <!-- Sidebar Menu --> */}
       <nav className="px-4 py-4  lg:px-6">
         {menuGroups.map((group, groupIndex) => (
           <div key={groupIndex}>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-white dark:text-bodydark2">
               {group.name}
             </h3>
 
-            <ul className="mb-6 flex flex-col gap-1.5">
+            <ul className="mb-6 flex flex-col gap-1.5 ">
               {group.menuItems.map((menuItem, menuIndex) => (
                 <SidebarItem
                   key={menuIndex}
@@ -375,7 +371,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </div>
         ))}
       </nav>
-      {/* <!-- Sidebar Menu --> */}
     </div>
   </aside>
 </ClickOutside>
