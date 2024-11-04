@@ -2,10 +2,7 @@
 export default function FirstSection() {
   return (
     <div className="relative h-full pt-48 bg-cover bg-center bg-[url('/images/background.jpg')]">
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
-
-      {/* Content container */}
       <div className="relative z-10 flex flex-col h-full items-end text-white pr-72"> 
         <p className="text-lg text-orange-400 font-semibold">
           WELCOME ON OUR SITE
